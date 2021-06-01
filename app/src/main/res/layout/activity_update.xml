@@ -21,16 +21,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:gravity="center_horizontal"
-            android:text="Input your new expense"
+            android:text="Update your expense"
             android:textColor="#000000"
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/editTextTextDescription"
+            android:id="@+id/editTextTextDescription2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -39,7 +39,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextValue"
+            android:id="@+id/editTextValue2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,7 +48,7 @@
             android:inputType="numberDecimal" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/editTextDate2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -57,11 +57,11 @@
             android:inputType="date|datetime" />
 
         <ImageButton
-            android:id="@+id/imageButtonSend"
+            android:id="@+id/imageButtonUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            app:srcCompat="@android:drawable/ic_popup_sync" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

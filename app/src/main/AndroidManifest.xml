@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpendingTracker_V2">
-        <activity android:name=".AddRecordActivity"
+        <activity android:name=".UpdateActivity"></activity>
+        <activity
+            android:name=".AddRecordActivity"
             android:label="Add item"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
