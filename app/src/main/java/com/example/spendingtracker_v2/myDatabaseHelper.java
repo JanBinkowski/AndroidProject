@@ -21,7 +21,7 @@ public class myDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_VALUE = "_value";
     private static final String COLUMN_DATE = "_date";
 
-    public myDatabaseHelper(@Nullable Context context) {
+    myDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -39,7 +39,7 @@ public class myDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addItemToDatabase(String description, double value, String date){
+    void addItemToDatabase(String description, String value, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -47,9 +47,9 @@ public class myDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_VALUE, value);
         cv.put(COLUMN_DATE, date);
 
-        long reslut = db.insert(TABLE_NAME, null, cv);
+        long result = db.insert(TABLE_NAME, null, cv);
 
-        if(reslut == -1){
+        if(result == -1){
             Toast.makeText(context, "Insert to DB failed!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context, "Data inserted to DB.", Toast.LENGTH_SHORT).show();
@@ -65,5 +65,21 @@ public class myDatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
             }
         return cursor;
+    }
+
+    void updateDataInDatabase(String row_id, String description, String value, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_VALUE, value);
+        cv.put(COLUMN_DATE, date);
+
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Update to DB failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Data updated to DB successfully.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

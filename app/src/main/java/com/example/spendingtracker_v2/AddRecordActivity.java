@@ -31,7 +31,7 @@ public class AddRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 myDatabaseHelper myDB = new myDatabaseHelper(AddRecordActivity.this);
                 myDB.addItemToDatabase(editTextTextDescription.getText().toString().trim(),
-                        Integer.valueOf(editTextValue.getText().toString().trim()),
+                        editTextValue.getText().toString().trim(),
                         editTextDate.getText().toString().trim());
             }
         });

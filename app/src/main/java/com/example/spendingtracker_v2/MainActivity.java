@@ -1,5 +1,6 @@
 package com.example.spendingtracker_v2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,11 +49,18 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, spend_id, spend_description, spend_value, spend_date);
+        customAdapter = new CustomAdapter(MainActivity.this, this, spend_id, spend_description, spend_value, spend_date);
         RecyclerViewList.setAdapter(customAdapter);
         RecyclerViewList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 ){
+            recreate();
+        }
+    }
 
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllData();

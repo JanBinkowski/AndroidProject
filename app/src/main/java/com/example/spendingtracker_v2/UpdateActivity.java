@@ -26,13 +26,22 @@ public class UpdateActivity extends AppCompatActivity {
         editTextValue2 = findViewById(R.id.editTextValue2);
         editTextDate2 = findViewById(R.id.editTextDate2);
         imageButtonUpdate = findViewById(R.id.imageButtonUpdate);
+
+        getAndSetIntentData();
+
         imageButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                myDatabaseHelper myDB = new myDatabaseHelper(UpdateActivity.this);
+                description = editTextTextDescription2.getText().toString().trim();
+                value = editTextValue2.getText().toString().trim();
+                date = editTextDate2.getText().toString().trim();
+                myDB.updateDataInDatabase(id, description, value, date);
             }
         });
-        getAndSetIntentData();
+
+
+
     }
 
     void getAndSetIntentData(){

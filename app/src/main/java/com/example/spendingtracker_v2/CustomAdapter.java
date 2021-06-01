@@ -1,5 +1,6 @@
 package com.example.spendingtracker_v2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,14 +18,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private ArrayList<String> spend_id, spend_description, spend_value, spend_date;
-
+    Activity activity;
     int position;
 
-    CustomAdapter(Context context,
+    CustomAdapter(Activity activity,
+                  Context context,
                   ArrayList spend_id,
                   ArrayList spend_description,
                   ArrayList spend_value,
                   ArrayList spend_date){
+            this.activity = activity;
             this.context = context;
             this.spend_id = spend_id;
             this.spend_description = spend_description;
@@ -56,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("description", String.valueOf(spend_description.get(position)));
                 intent.putExtra("value", String.valueOf(spend_value.get(position)));
                 intent.putExtra("date", String.valueOf(spend_date.get(position)));
-                context.startActivity(intent);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }
