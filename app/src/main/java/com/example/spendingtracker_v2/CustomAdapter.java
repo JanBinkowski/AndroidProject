@@ -1,9 +1,11 @@
 package com.example.spendingtracker_v2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private ArrayList<String> spend_id, spend_description, spend_value, spend_date;
+
+    int position;
 
     CustomAdapter(Context context,
                   ArrayList spend_id,
@@ -39,10 +43,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        this.position = position;
         holder.spending_id_text.setText(String.valueOf(spend_id.get(position)));
         holder.spending_description_txt.setText(String.valueOf(spend_description.get(position)));
         holder.spending_date_txt.setText(String.valueOf(spend_date.get(position)));
         holder.spending_value_txt.setText(String.valueOf(spend_value.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(spend_id.get(position)));
+                intent.putExtra("description", String.valueOf(spend_description.get(position)));
+                intent.putExtra("value", String.valueOf(spend_value.get(position)));
+                intent.putExtra("date", String.valueOf(spend_date.get(position)));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -52,7 +68,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView spending_id_text, spending_description_txt, spending_date_txt, spending_value_txt;
+        TextView spending_id_text,
+                 spending_description_txt,
+                 spending_date_txt,
+                 spending_value_txt;
+        LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +80,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             spending_description_txt = itemView.findViewById(R.id.spending_description_txt);
             spending_date_txt = itemView.findViewById(R.id.spending_date_txt);
             spending_value_txt = itemView.findViewById(R.id.spending_value_txt);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }
