@@ -1,4 +1,4 @@
 # AndroidProject
-## Sepnding Tracker App
+## Spending Tracker App
 + SQLite DB and CRUD
 + Recycler View 
