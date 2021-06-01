@@ -28,7 +28,7 @@ public class AddRecordActivity extends AppCompatActivity {
 
         imageButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 myDatabaseHelper myDB = new myDatabaseHelper(AddRecordActivity.this);
                 myDB.addItemToDatabase(editTextTextDescription.getText().toString().trim(),
                         Integer.valueOf(editTextValue.getText().toString().trim()),
