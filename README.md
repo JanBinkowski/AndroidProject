@@ -1,2 +1,4 @@
 # AndroidProject
-Sepnding Tracker App
+## Sepnding Tracker App
++ SQLite DB and CRUD
++ Recycler View 
