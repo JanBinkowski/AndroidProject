@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         customAdapter = new CustomAdapter(MainActivity.this, this, spend_id, spend_description, spend_value, spend_date);
         RecyclerViewList.setAdapter(customAdapter);
         RecyclerViewList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        myDatabaseHelper myDB = new myDatabaseHelper(this);
+        double num = myDB.getTotalOfAmount();
+        Toast.makeText(this, ""+num, Toast.LENGTH_SHORT).show();
     }
 
     @Override

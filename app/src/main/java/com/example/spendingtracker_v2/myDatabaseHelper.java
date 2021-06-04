@@ -98,4 +98,13 @@ public class myDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+
+    public double getTotalOfAmount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT SUM("+COLUMN_VALUE+") FROM " + TABLE_NAME, null);
+        c.moveToFirst();
+        double i = c.getDouble(0);
+        c.close();
+        return i;
+    }
 }

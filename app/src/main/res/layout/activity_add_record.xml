@@ -73,7 +73,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/imageButtonSend"
+            android:id="@+id/ButtonSend"
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
