@@ -5,4 +5,7 @@
         android:id="@+id/delete_all"
         android:title="Delete All Data"
         app:showAsAction="never"></item>
+    <item
+        android:id="@+id/total"
+        android:title="See total spending"/>
 </menu>

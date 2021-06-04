@@ -51,6 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.spending_description_txt.setText(String.valueOf(spend_description.get(position)));
         holder.spending_date_txt.setText(String.valueOf(spend_date.get(position)));
         holder.spending_value_txt.setText(String.valueOf(spend_value.get(position)));
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

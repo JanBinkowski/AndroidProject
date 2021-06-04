@@ -2,10 +2,12 @@ package com.example.spendingtracker_v2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import android.widget.*;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Currency;
@@ -57,9 +60,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerViewList.setAdapter(customAdapter);
         RecyclerViewList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        myDatabaseHelper myDB = new myDatabaseHelper(this);
-        double num = myDB.getTotalOfAmount();
-        Toast.makeText(this, ""+num, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -73,7 +74,14 @@ public class MainActivity extends AppCompatActivity {
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
-            Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout),"There is no data yet. \nClick 'plus' button to add data.",
+                    Snackbar.LENGTH_SHORT)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    });
+            snackbar.setDuration(8000).show();
         }else{
             while(cursor.moveToNext()){
                 spend_id.add(cursor.getString(0));
@@ -94,14 +102,64 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
-            Toast.makeText(this, "All data deleted", Toast.LENGTH_SHORT).show();
-            myDatabaseHelper myDB = new myDatabaseHelper(this);
-            myDB.deleteAllData();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            confirmDialog();
+        }
+        if(item.getItemId() == R.id.total){
+           // displayTotalSpendingInSnackBar();
+            displayInfo2();
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Confirmation");
+        builder.setMessage("Are you sure to delete all data?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myDatabaseHelper myDB = new myDatabaseHelper(MainActivity.this);
+                myDB.deleteAllData();
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
+    }
+
+    void displayTotalSpendingInSnackBar(){
+        myDatabaseHelper myDB = new myDatabaseHelper(this);
+        double totalSpend = myDB.getTotalOfAmount();
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout),"Your total spending: "+totalSpend+" PLN",
+                Snackbar.LENGTH_SHORT)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
+        snackbar.show();
+    }
+
+    void displayInfo2(){
+        myDatabaseHelper myDB = new myDatabaseHelper(this);
+        double totalSpend = myDB.getTotalOfAmount();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Total Spending");
+        builder.setMessage("Your total spending as far is: "+totalSpend+" PLN");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 }

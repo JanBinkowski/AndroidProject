@@ -18,6 +18,7 @@ public class AddRecordActivity extends AppCompatActivity {
     ImageButton ButtonSend;
     ImageButton buttonDate;
     DatePickerDialog datepicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,6 @@ public class AddRecordActivity extends AppCompatActivity {
                 myDB.addItemToDatabase(editTextTextDescription.getText().toString().trim(),
                         editTextValue.getText().toString().trim(),
                         editTextDate.getText().toString().trim());
-
             }
         });
     }
