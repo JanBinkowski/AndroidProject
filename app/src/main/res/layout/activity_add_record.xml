@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#009688"
+    android:foregroundTint="#00009688"
     tools:context=".AddRecordActivity">
 
     <LinearLayout
@@ -26,7 +28,6 @@
             android:layout_height="51dp"
             android:gravity="center_horizontal"
             android:text="Input your new expense"
-            android:textColor="#000000"
             android:textSize="24sp" />
 
         <EditText
@@ -47,17 +48,33 @@
             android:hint="Value"
             android:inputType="numberDecimal" />
 
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:hint="Date"
-            android:inputType="date|datetime" />
+        <LinearLayout
+            android:layout_width="279dp"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="Date"
+                android:inputType="date|datetime" />
+
+            <ImageButton
+                android:id="@+id/buttonDate"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/teal_700"
+                app:srcCompat="@android:drawable/ic_menu_month" />
+
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/imageButtonSend"
+            style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
