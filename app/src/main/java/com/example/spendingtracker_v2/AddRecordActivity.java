@@ -26,6 +26,7 @@ public class AddRecordActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         imageButtonSend = findViewById(R.id.imageButtonSend);
 
+
         imageButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +34,7 @@ public class AddRecordActivity extends AppCompatActivity {
                 myDB.addItemToDatabase(editTextTextDescription.getText().toString().trim(),
                         editTextValue.getText().toString().trim(),
                         editTextDate.getText().toString().trim());
+
             }
         });
     }

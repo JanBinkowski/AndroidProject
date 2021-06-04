@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpendingTracker_V2">
-        <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".UpdateActivity"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".AddRecordActivity"
             android:label="Add item"
