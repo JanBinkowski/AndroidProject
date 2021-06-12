@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView RecyclerViewList;
     FloatingActionButton ButtonAddRecord;
+    ImageView imageViewNoData;
+    TextView textViewNoData;
 
     myDatabaseHelper myDB;
     ArrayList<String> spend_id, spend_description, spend_value, spend_date;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerViewList = findViewById(R.id.RecyclerViewList);
+        imageViewNoData = findViewById(R.id.imageViewNoData);
+        textViewNoData = findViewById(R.id.textViewNoData);
         ButtonAddRecord = findViewById(R.id.ButtonAddRecord);
 
         ButtonAddRecord.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
             snackbar.setDuration(8000).show();
+
+            imageViewNoData.setVisibility(View.VISIBLE);
+            textViewNoData.setVisibility(View.VISIBLE);
+
         }else{
             while(cursor.moveToNext()){
                 spend_id.add(cursor.getString(0));
